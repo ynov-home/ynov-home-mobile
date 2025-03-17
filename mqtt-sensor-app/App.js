@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Button, FlatList, StyleSheet } from "react-native";
-import { connectMqtt, sendCommand } from "./mqttService";
+// import { connectMqtt, sendCommand } from "./mqttService";
 import { getDevices, updateDeviceStatus } from "./firebaseService";
 
 export default function App() {
     const [devices, setDevices] = useState([]);
 
-    useEffect(() => {
-        fetchDevices();
-        connectMqtt((message) => {
-            console.log("MQTT Update:", message);
-            fetchDevices();
-        });
-    }, []);
+    // useEffect(() => {
+    //     fetchDevices();
+    //     connectMqtt((message) => {
+    //         console.log("MQTT Update:", message);
+    //         fetchDevices();
+    //     });
+    // }, []);
 
     const fetchDevices = async () => {
         const data = await getDevices();
         setDevices(data);
     };
 
-    const toggleDevice = async (device) => {
-        const newStatus = device.status === "on" ? "off" : "on";
-        await updateDeviceStatus(device.id, newStatus);
-        sendCommand(`${device.id}:${newStatus}`); // Send MQTT command
-        fetchDevices();
-    };
+    // const toggleDevice = async (device) => {
+    //     const newStatus = device.status === "on" ? "off" : "on";
+    //     await updateDeviceStatus(device.id, newStatus);
+    //     sendCommand(`${device.id}:${newStatus}`); // Send MQTT command
+    //     fetchDevices();
+    // };
 
     return (
         <View style={styles.container}>

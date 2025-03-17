@@ -2,12 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "id.firebaseapp.com",
-  projectId: "id",
-  storageBucket: "id.appspot.com",
-  messagingSenderId: "MESSAGING_SENDER_ID",
-  appId: "APP_ID",
+  apiKey: "AIzaSyBkdS-E1g1KdLrcXwDgIsZ-ciZScqqsOz0",
+  authDomain: "ynov-home.firebaseapp.com",
+  databaseURL: "https://ynov-home-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "ynov-home",
+  storageBucket: "ynov-home.firebasestorage.app",
+  messagingSenderId: "144234050265",
+  appId: "1:144234050265:web:36eb39a887276b819084c8"
 };
 
 const app = initializeApp(firebaseConfig);
