@@ -1,18 +1,18 @@
-
 const express = require('express');
-const bodyParser = require('body-parser');
-const devicesRoutes = require('./routes/devices');  // Import routes
+const cors = require('cors');
+const devicesRouter = require('./routes/devices');
 
 const app = express();
-const PORT = 5000;
+const port = process.env.PORT || 5000;
 
-// Middleware to parse incoming JSON requests
-app.use(bodyParser.json());
+// Middleware to handle CORS
+app.use(cors());
+app.use(express.json()); // to parse incoming JSON data
 
-// Use the devices routes
-app.use('/api', devicesRoutes);
+// Define routes
+app.use('/api/devices', devicesRouter);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// Start server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
