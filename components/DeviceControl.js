@@ -4,7 +4,7 @@ import mqtt from "mqtt";
 import firestore from "@react-native-firebase/firestore";
 
 // MQTT & Firebase Config
-const MQTT_BROKER = "wss://your-mqtt-broker-ip:port"; // WebSocket connection
+const MQTT_BROKER = "wss://mqtt-broker-ip:port"; // WebSocket connection
 const MQTT_TOPIC = "iot/device/control";
 
 export default function DeviceControl() {
