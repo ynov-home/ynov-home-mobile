@@ -35,4 +35,5 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-firebaseServiceAccount.json
+# firebase
+mqtt-sensor-app/firebaseServiceAcount.json

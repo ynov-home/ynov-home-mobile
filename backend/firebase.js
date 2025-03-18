@@ -1,10 +1,10 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('../mqtt-sensor-app/firebaseServiceAccount.json');
+const serviceAccount = require('../mqtt-sensor-app/firebaseServiceAcount.json');
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://your-project-id.firebaseio.com"
+  databaseURL: "https://ynov-home-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
 const db = admin.firestore();
