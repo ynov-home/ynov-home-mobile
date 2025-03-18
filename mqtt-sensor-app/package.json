@@ -13,6 +13,7 @@
     "@expo/metro-runtime": "~4.0.1",
     "@react-native-firebase/app": "^21.12.0",
     "@react-native-firebase/firestore": "^21.12.0",
+    "@react-native-voice/voice": "^3.2.4",
     "expo": "~52.0.38",
     "expo-status-bar": "~2.0.1",
     "firebase-admin": "^13.2.0",
