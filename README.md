@@ -1,4 +1,3 @@
-
 # MQTT Sensor Control App
 
 This project provides a platform for controlling IoT devices via MQTT and Firebase. It uses React Native for the frontend, a backend powered by Node.js and Express, and Firebase for device status storage. The app allows users to control devices (turn on/off) and display device status in real-time.
@@ -16,7 +15,6 @@ The project consists of two main parts:
    - Located in the `mqtt-sensor-app/` directory.
    - Provides the user interface for controlling devices.
 
-
 ---
 
 ## Prerequisites
@@ -24,105 +22,81 @@ The project consists of two main parts:
 Before you begin, ensure you have the following installed:
 
 ### 1. **Node.js**
-   - Download and install Node.js from [here](https://nodejs.org/) if you don't have it.
-   - You can check if it's installed by running:
-     
+   - Download and install Node.js from [here](https://nodejs.org/).
+   - Verify the installation:
      ```bash
      node -v
      npm -v
      ```
 
 ### 2. **Firebase Project**
-   - You need to set up Firebase for your app. If you haven't already, go to the [Firebase Console](https://console.firebase.google.com/), create a project, and add your Firebase configuration.
-   - Download the `firebaseServiceAccount.json` file from Firebase and add it to the `mqtt-sensor-app/` directory.
+   - Set up Firebase in the [Firebase Console](https://console.firebase.google.com/).
+   - Download the `firebaseServiceAccount.json` file and place it in the respective directory.
 
 ### 3. **React Native Development Environment**
-   - Follow the instructions in the official React Native [Getting Started guide](https://reactnative.dev/docs/environment-setup).
-   - Ensure you have the following installed:
-     - **Xcode** for iOS development (macOS only).
-     - **Android Studio** for Android development.
+   - Follow the official [React Native Setup Guide](https://reactnative.dev/docs/environment-setup).
+   - Install dependencies based on your target platform (iOS or Android).
 
-### 4. **CocoaPods** (for iOS builds)
-   If you are building for iOS, you need to install CocoaPods:
-   ```bash
-   sudo gem install cocoapods
-   ```
-
+### 4. **CocoaPods (for iOS builds)**
+   - Required if running the app on iOS:
+     ```bash
+     sudo gem install cocoapods
+     ```
 
 ---
 
-## Installation
+## Installation and Setup
 
-### Backend Setup (Node.js, Express, Firebase)
+### Backend Setup
 
-1. **Navigate to the backend directory:**
+1. Navigate to the backend directory:
    ```bash
    cd backend
    ```
-
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-3. **Configure Firebase:**
-   - Add your Firebase configuration file (`firebaseServiceAccount.json`) to the `backend/` directory.
-   - Update the Firebase service initialization in `firebase.js` to point to the correct path for `firebaseServiceAccount.json`.
-
-4. **Run the server:**
+3. Configure Firebase:
+   - Place `firebaseServiceAccount.json` in `backend/`.
+4. Start the server:
    ```bash
    node server.js
    ```
    The backend server will now be running and listening for requests.
 
-### Frontend Setup (React Native)
+### Frontend Setup
 
-1. **Navigate to the frontend directory:**
+1. Navigate to the frontend directory:
    ```bash
    cd mqtt-sensor-app
    ```
-
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-3. **Install iOS dependencies (if you're building for iOS):**
-   If you're on macOS and need to run the app on iOS, run:
+3. Install iOS dependencies (macOS only):
    ```bash
    npx pod-install
    ```
-
-4. **Run the app:**
-   - For **iOS**:
-     ```bash
-     npx react-native run-ios
-     ```
-   - For **Android**:
-     ```bash
-     npx react-native run-android
-     ```
-
-5. The app will now launch on the emulator or a connected device.
-
-
+4. Start the application:
+   ```bash
+   npx expo start
+   ```
 
 ---
 
 ## Features
 
 - **Device Control:**
-  - View the list of devices fetched from Firebase.
-  - Turn devices on and off by clicking a button.
-  
+  - View devices fetched from Firebase.
+  - Toggle devices on/off via UI.
 - **Voice Control:**
-  - A button that listens for voice commands such as "Device 1 off" or "Device 2 on" and sends the corresponding command to the MQTT server.
-  
+  - Issue commands like "Device 1 off" or "Device 2 on".
+  - The command is processed and sent to MQTT.
 - **Real-Time Updates:**
-  - Devices' statuses are updated in real-time using MQTT.
-  - Fetch updated device status from Firebase after each change.
-
-
+  - Devices' statuses update in real-time via MQTT.
+  - Syncs with Firebase.
 
 ---
 
@@ -130,19 +104,16 @@ Before you begin, ensure you have the following installed:
 
 ### Backend (Node.js + Firebase)
 
-- **firebase.js**: Handles Firebase configuration and connection.
-- **firebaseAdmin.js**: Firebase Admin SDK for managing the service account.
-- **server.js**: Starts the Express server and configures the routes.
-- **routes/devices.js**: Contains the routes for interacting with device data in Firebase.
+- `firebase.js`: Handles Firebase configuration.
+- `server.js`: Starts the Express server and sets up routes.
+- `routes/devices.js`: Contains routes for device interactions.
 
 ### Frontend (React Native)
 
-- **App.js**: Main application component where devices are listed and controlled.
-- **DeviceList.js**: Displays a list of devices and allows toggling their status.
-- **firebaseService.js**: Contains functions for interacting with Firebase to get and update device data.
-- **mqttService.js**: Contains functions to handle MQTT connection and send commands to devices.
-
-
+- `App.js`: Main application component.
+- `DeviceList.js`: Displays device list and toggles status.
+- `firebaseService.js`: Manages Firebase interactions.
+- `mqttService.js`: Handles MQTT communication.
 
 ---
 
@@ -151,17 +122,34 @@ Before you begin, ensure you have the following installed:
 The backend exposes the following endpoints:
 
 - **GET /devices**: Fetch all devices from Firebase.
-- **POST /devices/update**: Update the status of a device in Firebase.
+- **POST /devices/update**: Update a device's status.
 
+Example Request:
+```json
+{
+  "deviceId": "device1",
+  "status": "on"
+}
+```
 
+Example Response:
+```json
+{
+  "message": "Device updated successfully"
+}
+```
 
 ---
 
 ## Voice Command Functionality
 
-To allow for voice recognition and control, the app listens for commands like "turn on device 1" or "turn off device 2." These commands are converted to text and sent as API requests to control the devices.
+The app listens for commands such as "turn on device 1" or "turn off device 2" and:
+
+1. Converts speech to text.
+2. Interprets the command.
+3. Sends an API request to control the device.
+
 
 ---
-
-
+<img width="401" alt="Screenshot 2025-03-18 at 15 52 36" src="https://github.com/user-attachments/assets/e1794104-1df1-4f72-a70e-d8eeaffe96fd" />
 
