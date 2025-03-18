@@ -11,10 +11,9 @@ export default function App() {
     useEffect(() => {
         fetchDevices();
 
-        // Attach event listeners
         Voice.onSpeechResults = (event) => {
             if (event.value && event.value.length > 0) {
-                setRecognizedText(event.value[0]); // Take the first recognized phrase
+                setRecognizedText(event.value[0]); 
             }
         };
 
@@ -23,7 +22,6 @@ export default function App() {
         };
 
         return () => {
-            // Cleanup event listeners on unmount
             Voice.destroy().then(Voice.removeAllListeners);
         };
     }, []);
@@ -58,7 +56,7 @@ export default function App() {
     const startListening = async () => {
         try {
             setIsListening(true);
-            await Voice.start("en-US"); // Change language if needed
+            await Voice.start("en-UK");
         } catch (error) {
             console.error("Error starting voice recognition:", error);
             setIsListening(false);
@@ -89,7 +87,6 @@ export default function App() {
                 )}
             />
 
-            {/* Speech-to-Text Button */}
             <View style={styles.voiceContainer}>
                 <Button 
                     title={isListening ? "Stop Listening" : "Start Listening"} 
