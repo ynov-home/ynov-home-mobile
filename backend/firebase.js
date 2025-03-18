@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('../mqtt-sensor-app/firebaseServiceAcount.json');
+const serviceAccount = require('../mqtt-sensor-app/firebaseServiceAccount.json');
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
